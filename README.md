@@ -1,1 +1,1 @@
-# python-postgresql-ping
+# python-postgresql-client

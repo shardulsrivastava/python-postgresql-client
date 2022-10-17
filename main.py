@@ -3,6 +3,7 @@ import os
 import time
 import logging
 import sys
+from pprint import pformat
 
 logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', stream=sys.stdout, level=logging.DEBUG, datefmt='%Y-%m-%d %H:%M:%S')
 
@@ -40,9 +41,10 @@ def execute_ping(connection):
 
 
 def ping_postgres():
-    logging.info(f"Connecting to the database =>{DATABASE_URL}")
+    logging.info(f"Connecting to the database => {DATABASE_URL}")
     connection = connect()
-    logging.info(f"Connection established => {connection}")
+
+    logging.info(f"Connection established => {pformat(connection)}")
     while True:
         execute_ping(connection)
         # Sleep for 50 miliseconds by default

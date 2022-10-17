@@ -24,8 +24,8 @@ def connect():
             host=DATABASE_URL,
             port=DATABASE_PORT
         )
-    except psycopg2.OperationalError:
-        logging.error("Database is not reachable")
+    except Exception as e:
+        logging.error(f"Database connection could not be established => {e}")
 
 
 def execute_ping(connection):
@@ -35,8 +35,8 @@ def execute_ping(connection):
         cur = connection.cursor()
         cur.execute('SELECT 1')
         logging.info("Database is reachable.")
-    except psycopg2.OperationalError:
-        pass
+    except Exception as e:
+        logging.error(f"Database is not reachable => {e}")
     #print(connection.closed)  # 2
 
 
